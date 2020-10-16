@@ -1,4 +1,5 @@
 
+using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,9 @@ namespace API
         {
             services.AddControllers();
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IProductRepository,ProductRepository>();
+            services.AddScoped<IProductBrandRepository,ProductBrandRepository>();
+            services.AddScoped<IProductTypeRepository,ProductTypeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
