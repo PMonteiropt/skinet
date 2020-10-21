@@ -71,5 +71,12 @@ namespace API.Controllers
             (productParams.PageIndex, productParams.PageSize, totalItems, data));
         }
 
+        [HttpGet("types")]
+        public async Task<ActionResult<List<ProductBrand>>> GetTypes()
+        {
+            var types = await _productTypeRepo.ListAllAsync();
+            return Ok(types);
+        }
+
     }
 }
